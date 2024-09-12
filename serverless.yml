@@ -1,0 +1,22 @@
+service: basic-starter-nestjs  # Direct service name, no object notation
+
+provider:
+  name: aws
+  runtime: nodejs16.x  # Ensure runtime is lowercase
+  lambdaHashingVersion: "20201221"  # Recommended new hashing algorithm
+
+plugins:
+  - serverless-plugin-typescript
+  # - serverless-plugin-optimize
+  - serverless-offline
+
+functions:
+  main:
+    handler: src/lambda.handler
+    events:
+      - http:
+          method: any
+          path: /users
+      - http:
+          method: GET
+          path: /users/test
